@@ -1,2 +1,2 @@
 resources/*
-./haproxy-dynamic-config
+haproxy-dynamic-config

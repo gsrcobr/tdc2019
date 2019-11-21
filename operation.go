@@ -72,10 +72,17 @@ func (o *Op) UpdateBackends() {
 	cfg := string(b)
 
 	// Get a new client
-	client, err := api.NewClient(api.DefaultConfig())
+	clientConfig := &api.Config{
+		Address:    "localhost:8500",
+		Datacenter: "dc-local",
+		Scheme:     "http",
+	}
+	client, err := api.NewClient(clientConfig)
 	if err != nil {
 		panic(err)
 	}
+
+	//spew.Dump(client)
 
 	catalog := client.Catalog()
 
@@ -86,16 +93,16 @@ func (o *Op) UpdateBackends() {
 		serverList = append(serverList, fmt.Sprintf("server %s %s:%d check inter 5s", s.Node, s.Address, s.ServicePort))
 	}
 
-	cfg = strings.Replace(cfg, "#CLUSTER_REST_API_BACKEND_SERVERS#", strings.Join(serverList, "\n"), 1)
+	cfg = strings.Replace(cfg, "#CLUSTER_REST_API_BACKEND_SERVERS#", strings.Join(serverList, "\n    "), 1)
 
 	svc, _, _ = catalog.Service("cluster_soap_api", "", nil)
 
 	serverList = serverList[:0]
 	for _, s := range svc {
-		serverList = append(serverList, fmt.Sprintf("server %s %s:%d check inter 5s\n", s.Node, s.Address, s.ServicePort))
+		serverList = append(serverList, fmt.Sprintf("server %s %s:%d check inter 5s", s.Node, s.Address, s.ServicePort))
 	}
 
-	cfg = strings.Replace(cfg, "#CLUSTER_SOAP_API_BACKEND_SERVERS#", strings.Join(serverList, "\n"), 1)
+	cfg = strings.Replace(cfg, "#CLUSTER_SOAP_API_BACKEND_SERVERS#", strings.Join(serverList, "\n    "), 1)
 
 	if flagCommit {
 		e := ioutil.WriteFile("./resources/haproxy-final.cfg", []byte(cfg), 0644)
