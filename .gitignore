@@ -1,2 +1,3 @@
-resources/*
+resources/haproxy-template.cfg
+resources/haproxy-final.cfg
 haproxy-dynamic-config
