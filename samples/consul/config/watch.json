@@ -1,0 +1,9 @@
+{
+  "watches": [
+    {
+      "type": "service",
+      "service": "cluster_rest_api",
+      "args": ["/Users/guilherme.ribeiro/projects/tdc2019/consul/haproxy-dynamic-config.sh"]
+    }
+  ]
+}

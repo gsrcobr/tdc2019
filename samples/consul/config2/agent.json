@@ -1,0 +1,7 @@
+{
+    "datacenter": "dc-local",
+    "data_dir": "./data/client/node2",
+    "log_level": "INFO",
+    "node_name": "guiguis-node2",
+    "server": false
+}

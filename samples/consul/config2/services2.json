@@ -1,0 +1,12 @@
+{
+  "services": [
+    {
+      "name": "cluster_www1",
+      "port": 81
+    },
+    {
+      "name": "cluster_www2",
+      "port": 82
+    }
+  ]
+}

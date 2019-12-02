@@ -1,0 +1,2 @@
+- Baixar o binario do Consul em consul.io e deixa-lo no PATH!
+- O script start-cluster.sh adiciona 2 enderecos na loopback da maquina

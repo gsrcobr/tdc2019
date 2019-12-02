@@ -1,0 +1,12 @@
+{
+  "services": [
+    {
+      "name": "cluster_rest_api",
+      "port": 80
+    },
+    {
+      "name": "cluster_soap_api",
+      "port": 8080
+    }
+  ]
+}
